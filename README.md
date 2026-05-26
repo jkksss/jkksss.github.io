@@ -55,6 +55,6 @@ A fully functional webpage built from scratch using HTML and CSS as part of firs
 
 ## 📬 Contact
 
-- 📧 jokoroman67@gmail.com
+- 📧 jokonarcelo49@gmail.com
 - 📞 +63 985 097 9522
 - 📍 Panabo City, Davao del Norte

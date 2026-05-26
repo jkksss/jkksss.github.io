@@ -8,7 +8,7 @@ Live site: [jkksss.github.io](https://jkksss.github.io)
 
 ## About Me
 
-I'm a first-year IT student at Davao Del Norte State College (2025–2026), based in Panabo City, Davao del Norte. I'm passionate about building practical software solutions and eager to grow through real-world experience.
+I'm at second-year IT student at Davao Del Norte State College (2025–2026), based in Panabo City, Davao del Norte. I'm passionate about building practical software solutions and eager to grow through real-world experience.
 
 ---
 

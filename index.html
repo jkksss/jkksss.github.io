@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Joko Roman — IT Student & Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #22c55e;
+    --green-dim: #16a34a;
+    --green-glow: rgba(34,197,94,0.18);
+    --green-subtle: rgba(34,197,94,0.07);
+    --bg: #0a0f0d;
+    --bg2: #0e1510;
+    --surface: #111a14;
+    --border: rgba(34,197,94,0.15);
+    --text: #e8f0eb;
+    --muted: #7a9282;
+    --mono: 'Space Mono', monospace;
+    --sans: 'DM Sans', sans-serif;
+    --display: 'Syne', sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* Noise texture overlay */
+  body::before {
+    content: '';
+    position: fixed; inset: 0; z-index: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    opacity: 0.5;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.25rem 2.5rem;
+    background: rgba(10,15,13,0.85);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: var(--mono);
+    font-size: 0.85rem;
+    color: var(--green);
+    letter-spacing: 0.1em;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--green); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 8rem 2.5rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-grid-bg {
+    position: absolute; inset: 0; z-index: 0;
+    background-image:
+      linear-gradient(var(--border) 1px, transparent 1px),
+      linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
+  }
+  .hero-glow {
+    position: absolute; top: 10%; left: 5%;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(34,197,94,0.12) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .hero-content { position: relative; z-index: 1; max-width: 900px; }
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-family: var(--mono); font-size: 0.72rem; color: var(--green);
+    border: 1px solid var(--border); border-radius: 2px;
+    padding: 0.3rem 0.75rem; margin-bottom: 1.75rem;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    background: var(--green-subtle);
+  }
+  .hero-tag::before { content: '●'; font-size: 0.5rem; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+  h1 {
+    font-family: var(--display);
+    font-size: clamp(3.5rem, 9vw, 7.5rem);
+    font-weight: 800;
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    margin-bottom: 0.15em;
+  }
+  .h1-green { color: var(--green); }
+  .hero-sub {
+    font-family: var(--sans);
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    color: var(--muted);
+    max-width: 520px;
+    margin: 1.5rem 0 2.5rem;
+    font-weight: 300;
+  }
+  .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn {
+    font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.08em;
+    text-decoration: none; padding: 0.75rem 1.75rem;
+    text-transform: uppercase; transition: all 0.2s; cursor: pointer; border: none;
+  }
+  .btn-primary {
+    background: var(--green); color: #0a0f0d;
+    clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+  }
+  .btn-primary:hover { background: #4ade80; transform: translateY(-2px); }
+  .btn-ghost {
+    background: transparent; color: var(--green);
+    border: 1px solid var(--border);
+    clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+  }
+  .btn-ghost:hover { background: var(--green-subtle); border-color: var(--green); }
+
+  /* SECTION BASE */
+  section { padding: 5rem 2.5rem; position: relative; z-index: 1; }
+  .section-label {
+    font-family: var(--mono); font-size: 0.7rem; color: var(--green);
+    letter-spacing: 0.15em; text-transform: uppercase;
+    margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.75rem;
+  }
+  .section-label::after { content: ''; flex: 1; max-width: 60px; height: 1px; background: var(--green-dim); }
+  h2 {
+    font-family: var(--display); font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 800; letter-spacing: -0.02em; margin-bottom: 3rem;
+  }
+
+  /* ABOUT */
+  .about-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start;
+    max-width: 1100px;
+  }
+  .about-text p { color: var(--muted); margin-bottom: 1rem; font-weight: 300; }
+  .about-text p strong { color: var(--text); font-weight: 500; }
+  .stat-row { display: flex; gap: 2rem; margin-top: 2rem; flex-wrap: wrap; }
+  .stat { border-left: 2px solid var(--green); padding-left: 1rem; }
+  .stat-num { font-family: var(--display); font-size: 2rem; font-weight: 800; color: var(--green); }
+  .stat-desc { font-family: var(--mono); font-size: 0.65rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; }
+
+  .skills-grid { display: flex; flex-direction: column; gap: 1rem; }
+  .skill-item { display: flex; flex-direction: column; gap: 0.35rem; }
+  .skill-header { display: flex; justify-content: space-between; }
+  .skill-name { font-family: var(--mono); font-size: 0.75rem; color: var(--text); }
+  .skill-pct { font-family: var(--mono); font-size: 0.7rem; color: var(--green); }
+  .skill-bar { height: 3px; background: var(--surface); border-radius: 2px; overflow: hidden; }
+  .skill-fill {
+    height: 100%; background: linear-gradient(90deg, var(--green-dim), var(--green));
+    border-radius: 2px; animation: grow 1.5s ease forwards;
+    transform-origin: left; transform: scaleX(0);
+  }
+  @keyframes grow { to { transform: scaleX(1); } }
+
+  /* PROJECTS */
+  .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; max-width: 1100px; }
+  .project-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 2rem;
+    position: relative; overflow: hidden;
+    transition: border-color 0.2s, transform 0.2s;
+    clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px));
+  }
+  .project-card:hover { border-color: var(--green); transform: translateY(-3px); }
+  .project-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--green), transparent);
+    opacity: 0; transition: opacity 0.3s;
+  }
+  .project-card:hover::before { opacity: 1; }
+  .project-card.featured { border-color: rgba(34,197,94,0.35); }
+  .project-badge {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    font-family: var(--mono); font-size: 0.65rem; color: var(--green);
+    background: var(--green-subtle); border: 1px solid var(--border);
+    padding: 0.2rem 0.6rem; margin-bottom: 1rem;
+    letter-spacing: 0.08em; text-transform: uppercase;
+  }
+  .project-title {
+    font-family: var(--display); font-size: 1.5rem; font-weight: 800;
+    margin-bottom: 0.5rem; color: var(--text);
+  }
+  .project-subtitle { font-family: var(--mono); font-size: 0.72rem; color: var(--green); margin-bottom: 1rem; }
+  .project-desc { font-size: 0.9rem; color: var(--muted); font-weight: 300; margin-bottom: 1.5rem; line-height: 1.7; }
+  .tech-stack { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem; }
+  .tech-tag {
+    font-family: var(--mono); font-size: 0.65rem; color: var(--muted);
+    border: 1px solid var(--border); padding: 0.2rem 0.6rem;
+    letter-spacing: 0.05em;
+  }
+  .feature-list { list-style: none; display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1.5rem; }
+  .feature-list li {
+    font-size: 0.85rem; color: var(--muted); font-weight: 300;
+    display: flex; align-items: flex-start; gap: 0.5rem;
+  }
+  .feature-list li::before { content: '→'; color: var(--green); font-family: var(--mono); flex-shrink: 0; }
+  .project-link {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-family: var(--mono); font-size: 0.72rem; color: var(--green);
+    text-decoration: none; letter-spacing: 0.08em; text-transform: uppercase;
+    transition: gap 0.2s;
+  }
+  .project-link:hover { gap: 0.8rem; }
+
+  /* EXPERIENCE */
+  .exp-card {
+    background: var(--surface); border: 1px solid var(--border);
+    padding: 2rem; max-width: 780px;
+    clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px));
+  }
+  .exp-top { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem; margin-bottom: 0.75rem; }
+  .exp-title { font-family: var(--display); font-size: 1.15rem; font-weight: 800; }
+  .exp-org { font-family: var(--mono); font-size: 0.72rem; color: var(--green); margin-top: 0.25rem; }
+  .exp-date { font-family: var(--mono); font-size: 0.68rem; color: var(--muted); border: 1px solid var(--border); padding: 0.2rem 0.7rem; }
+  .exp-desc { color: var(--muted); font-size: 0.9rem; font-weight: 300; line-height: 1.7; }
+
+  /* CONTACT */
+  .contact-inner {
+    max-width: 700px;
+    background: var(--surface); border: 1px solid var(--border);
+    padding: 3rem;
+    clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
+  }
+  .contact-inner p { color: var(--muted); font-weight: 300; margin-bottom: 2rem; }
+  .contact-list { display: flex; flex-direction: column; gap: 1rem; margin-bottom: 2rem; }
+  .contact-item { display: flex; align-items: center; gap: 1rem; }
+  .contact-icon { font-family: var(--mono); font-size: 0.7rem; color: var(--green); width: 30px; }
+  .contact-val { font-family: var(--mono); font-size: 0.82rem; color: var(--text); }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border); padding: 2rem 2.5rem;
+    display: flex; justify-content: space-between; align-items: center;
+    font-family: var(--mono); font-size: 0.68rem; color: var(--muted);
+    flex-wrap: wrap; gap: 1rem;
+  }
+  footer span { color: var(--green); }
+
+  /* DIVIDER */
+  .divider { height: 1px; background: var(--border); margin: 0 2.5rem; }
+
+  /* FADE IN */
+  .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .fade-in.visible { opacity: 1; transform: none; }
+
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.25rem; }
+    .nav-links { gap: 1.25rem; }
+    section { padding: 4rem 1.25rem; }
+    .hero { padding: 7rem 1.25rem 3rem; }
+    .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    footer { padding: 1.5rem 1.25rem; }
+    .contact-inner { padding: 2rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">JR.dev</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-content">
+    <div class="hero-tag">Available for opportunities</div>
+    <h1>JOKO<br><span class="h1-green">ROMAN</span></h1>
+    <p class="hero-sub">IT Student & Developer based in Panabo City, Davao del Norte. Building practical systems with clean logic and real-world impact.</p>
+    <div class="hero-ctas">
+      <a href="#projects" class="btn btn-primary">View Projects</a>
+      <a href="#contact" class="btn btn-ghost">Contact Me</a>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label">01 — About</div>
+  <h2>Who I Am</h2>
+  <div class="about-grid">
+    <div class="about-text fade-in">
+      <p>I'm a <strong>BS Information Technology student</strong> at Davao Del Norte State College, currently in my first year (2025–2026). I'm passionate about solving real problems through code and design.</p>
+      <p>I consider myself a responsible, hardworking, and creative person. I'm eager to apply my skills in a professional environment and grow through hands-on experience.</p>
+      <p>My toolkit spans <strong>Java development, web fundamentals, data management, and graphic design</strong> — and I enjoy combining them to build things that actually work.</p>
+      <div class="stat-row">
+        <div class="stat">
+          <div class="stat-num">61+</div>
+          <div class="stat-desc">Recipes in ReFinder</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">2</div>
+          <div class="stat-desc">Projects Built</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">1st</div>
+          <div class="stat-desc">Year IT Student</div>
+        </div>
+      </div>
+    </div>
+    <div class="skills-grid fade-in">
+      <div class="skill-item">
+        <div class="skill-header"><span class="skill-name">Microsoft Office Suite</span><span class="skill-pct">90%</span></div>
+        <div class="skill-bar"><div class="skill-fill" style="width:90%"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-header"><span class="skill-name">Java Programming</span><span class="skill-pct">75%</span></div>
+        <div class="skill-bar"><div class="skill-fill" style="width:75%; animation-delay:0.1s"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-header"><span class="skill-name">Graphic Design (Canva)</span><span class="skill-pct">80%</span></div>
+        <div class="skill-bar"><div class="skill-fill" style="width:80%; animation-delay:0.2s"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-header"><span class="skill-name">HTML / CSS</span><span class="skill-pct">65%</span></div>
+        <div class="skill-bar"><div class="skill-fill" style="width:65%; animation-delay:0.3s"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-header"><span class="skill-name">Data Management</span><span class="skill-pct">78%</span></div>
+        <div class="skill-bar"><div class="skill-fill" style="width:78%; animation-delay:0.4s"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-header"><span class="skill-name">SQLite / Database</span><span class="skill-pct">60%</span></div>
+        <div class="skill-bar"><div class="skill-fill" style="width:60%; animation-delay:0.5s"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-label">02 — Projects</div>
+  <h2>Things I've Built</h2>
+  <div class="projects-grid">
+
+    <!-- ReFinder -->
+    <div class="project-card featured fade-in">
+      <div class="project-badge">★ Featured Project</div>
+      <div class="project-title">ReFinder</div>
+      <div class="project-subtitle">Recipe Finder System</div>
+      <p class="project-desc">A Java desktop application that helps reduce food waste by matching kitchen inventory against a recipe database using the Rabin-Karp string matching algorithm. Supports 61 curated recipes across Filipino, Chinese, and Korean cuisine.</p>
+      <div class="tech-stack">
+        <span class="tech-tag">Java 21</span>
+        <span class="tech-tag">Swing + FlatLaf</span>
+        <span class="tech-tag">SQLite</span>
+        <span class="tech-tag">Apache Maven</span>
+        <span class="tech-tag">Rabin-Karp</span>
+      </div>
+      <ul class="feature-list">
+        <li>Smart recipe search with Rabin-Karp text matching</li>
+        <li>Match percentage & missing ingredient detection</li>
+        <li>Inventory management with add/update/delete</li>
+        <li>Favorites, cookbook, and cooking log with auto-deductions</li>
+        <li>HD recipe visuals served from SQLite backend</li>
+      </ul>
+      <a href="https://github.com/jkksss/ReFinder" target="_blank" class="project-link">View on GitHub →</a>
+    </div>
+
+    <!-- Java System -->
+    <div class="project-card fade-in">
+      <div class="project-badge">Course Project</div>
+      <div class="project-title">Java System</div>
+      <div class="project-subtitle">OOP & Data Structures Practice</div>
+      <p class="project-desc">A Java-based system applying core programming fundamentals including object-oriented design, user input handling, and simple database logic. Demonstrates understanding of OOP principles and structured thinking.</p>
+      <div class="tech-stack">
+        <span class="tech-tag">Java</span>
+        <span class="tech-tag">OOP</span>
+        <span class="tech-tag">Data Structures</span>
+      </div>
+      <ul class="feature-list">
+        <li>Object-oriented programming patterns</li>
+        <li>User input validation and handling</li>
+        <li>Basic database logic implementation</li>
+      </ul>
+    </div>
+
+    <!-- Webpage Project -->
+    <div class="project-card fade-in">
+      <div class="project-badge">Course Project</div>
+      <div class="project-title">Webpage Project</div>
+      <div class="project-subtitle">HTML & CSS Frontend</div>
+      <p class="project-desc">A fully functional webpage built from scratch as part of first-year coursework. Demonstrates ability to structure and style web content using fundamental HTML and CSS concepts.</p>
+      <div class="tech-stack">
+        <span class="tech-tag">HTML5</span>
+        <span class="tech-tag">CSS3</span>
+        <span class="tech-tag">Web Design</span>
+      </div>
+      <ul class="feature-list">
+        <li>Structured HTML layout from scratch</li>
+        <li>CSS styling and responsive layout design</li>
+        <li>Demonstrates build-from-zero ability</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-label">03 — Experience</div>
+  <h2>Where I've Worked</h2>
+  <div class="exp-card fade-in">
+    <div class="exp-top">
+      <div>
+        <div class="exp-title">Data Encoder</div>
+        <div class="exp-org">LGU Panabo — CSWDO / Office of the Senior Citizen Affairs (OSCA)</div>
+      </div>
+      <div class="exp-date">Internship / OJT</div>
+    </div>
+    <p class="exp-desc">
+      Entered, verified, and organized data of senior citizens and persons with disabilities (PWDs) for government records. Ensured accuracy, confidentiality, and completeness of information across official databases. Collaborated with office staff to support community services and administrative needs, gaining hands-on experience in data management, clerical tasks, and professional government workflows.
+    </p>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-label">04 — Contact</div>
+  <h2>Get In Touch</h2>
+  <div class="contact-inner fade-in">
+    <p>I'm currently open to internship opportunities, freelance projects, and collaborations. Feel free to reach out — I'm always happy to connect.</p>
+    <div class="contact-list">
+      <div class="contact-item">
+        <span class="contact-icon">[✉]</span>
+        <span class="contact-val">jokonarcelo49@gmail.com</span>
+      </div>
+      <div class="contact-item">
+        <span class="contact-icon">[☎]</span>
+        <span class="contact-val">+63 985 097 9522</span>
+      </div>
+      <div class="contact-item">
+        <span class="contact-icon">[⌖]</span>
+        <span class="contact-val">Panabo City, Davao del Norte, Philippines</span>
+      </div>
+      <div class="contact-item">
+        <span class="contact-icon">[⌥]</span>
+        <span class="contact-val">github.com/jkksss</span>
+      </div>
+    </div>
+    <a href="mailto:jokoroman67@gmail.com" class="btn btn-primary">Send a Message</a>
+  </div>
+</section>
+
+<footer>
+  <div>© 2026 <span>Joko Roman</span> — Portfolio</div>
+  <div>BS Information Technology · <span>DNSC</span></div>
+</footer>
+
+<script>
+  // Scroll fade-in
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

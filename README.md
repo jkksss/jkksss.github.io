@@ -1,4 +1,4 @@
-## 👋 Joko Roman — Portfolio
+# 👋 Joko Roman — Portfolio
 
 > BS Information Technology Student | Davao Del Norte State College
 
@@ -8,7 +8,7 @@ Live site: [jkksss.github.io](https://jkksss.github.io)
 
 ## About Me
 
-I'm at second-year IT student at Davao Del Norte State College (2025–2026), based in Panabo City, Davao del Norte. I'm passionate about building practical software solutions and eager to grow through real-world experience.
+I'm a first-year IT student at Davao Del Norte State College (2025–2026), based in Panabo City, Davao del Norte. I'm passionate about building practical software solutions and eager to grow through real-world experience.
 
 ---
 
@@ -34,13 +34,16 @@ A Java desktop application that reduces food waste by matching kitchen inventory
 
 ---
 
-### Java System
-A Java-based project applying OOP fundamentals, user input handling, and basic database logic.
+### SFPMS — School Feeding Program Management System
+A complete, role-based web management system for the DepEd Panabo City Division to monitor and manage the School Feeding Program across all 62 Panabo City schools.
 
----
+- 5 role levels: Super Admin, Admin, LGU, School Admin, Teacher
+- Auto BMI calculation, feeding logs & inventory tracking
+- DB triggers, stored procedures & views for data integrity
+- Global notification bell for low stock & missed sessions
+- Built with PHP, MySQL, PDO, and CSRF protection
 
-### Webpage Project
-A fully functional webpage built from scratch using HTML and CSS as part of first-year coursework.
+🔗 [github.com/markamper04/sfpms](https://github.com/markamper04/sfpms) *(Contributor)*
 
 ---
 
@@ -55,6 +58,6 @@ A fully functional webpage built from scratch using HTML and CSS as part of firs
 
 ## 📬 Contact
 
-- 📧 jokonarcelo49@gmail.com
+- 📧 jokoroman67@gmail.com
 - 📞 +63 985 097 9522
 - 📍 Panabo City, Davao del Norte

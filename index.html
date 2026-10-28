@@ -231,16 +231,31 @@
   .project-link:hover { gap: 0.8rem; }
 
   /* EXPERIENCE */
+  .exp-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    max-width: 780px;
+  }
   .exp-card {
     background: var(--surface); border: 1px solid var(--border);
     padding: 2rem; max-width: 780px;
+    position: relative; overflow: hidden;
+    transition: border-color 0.2s, transform 0.2s;
     clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px));
   }
+  .exp-card:hover { border-color: var(--green); transform: translateY(-2px); }
   .exp-top { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem; margin-bottom: 0.75rem; }
-  .exp-title { font-family: var(--display); font-size: 1.15rem; font-weight: 800; }
+  .exp-title { font-family: var(--display); font-size: 1.15rem; font-weight: 800; color: var(--text); }
   .exp-org { font-family: var(--mono); font-size: 0.72rem; color: var(--green); margin-top: 0.25rem; }
-  .exp-date { font-family: var(--mono); font-size: 0.68rem; color: var(--muted); border: 1px solid var(--border); padding: 0.2rem 0.7rem; }
-  .exp-desc { color: var(--muted); font-size: 0.9rem; font-weight: 300; line-height: 1.7; }
+  .exp-date { font-family: var(--mono); font-size: 0.68rem; color: var(--muted); border: 1px solid var(--border); padding: 0.2rem 0.7rem; background: var(--green-subtle); }
+  .exp-desc { color: var(--muted); font-size: 0.9rem; font-weight: 300; line-height: 1.7; margin-bottom: 1rem; }
+  .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 0.4rem; margin-top: 0.75rem; }
+  .exp-bullets li {
+    font-size: 0.85rem; color: var(--muted); font-weight: 300;
+    display: flex; align-items: flex-start; gap: 0.5rem;
+  }
+  .exp-bullets li::before { content: '→'; color: var(--green); font-family: var(--mono); flex-shrink: 0; }
 
   /* CONTACT */
   .contact-inner {
@@ -322,10 +337,6 @@
       <p>My toolkit spans <strong>Java development, web fundamentals, data management, and graphic design</strong> — and I enjoy combining them to build things that actually work.</p>
       <div class="stat-row">
         <div class="stat">
-          <div class="stat-num">61+</div>
-          <div class="stat-desc">Recipes in ReFinder</div>
-        </div>
-        <div class="stat">
           <div class="stat-num">3</div>
           <div class="stat-desc">Projects Built</div>
         </div>
@@ -333,32 +344,36 @@
           <div class="stat-num">3rd</div>
           <div class="stat-desc">Year IT Student</div>
         </div>
+        <div class="stat">
+          <div class="stat-num">2x</div>
+          <div class="stat-desc">SPES Grantee</div>
+        </div>
       </div>
     </div>
     <div class="skills-grid fade-in">
       <div class="skill-item">
-        <div class="skill-header"><span class="skill-name">Microsoft Office Suite</span><span class="skill-pct">90%</span></div>
+        <div class="skill-header"><span class="skill-name">Microsoft Office & Event Presentations</span><span class="skill-pct">90%</span></div>
         <div class="skill-bar"><div class="skill-fill" style="width:90%"></div></div>
       </div>
       <div class="skill-item">
-        <div class="skill-header"><span class="skill-name">Java Programming</span><span class="skill-pct">75%</span></div>
-        <div class="skill-bar"><div class="skill-fill" style="width:75%; animation-delay:0.1s"></div></div>
-      </div>
-      <div class="skill-item">
         <div class="skill-header"><span class="skill-name">Graphic Design (Canva)</span><span class="skill-pct">80%</span></div>
-        <div class="skill-bar"><div class="skill-fill" style="width:80%; animation-delay:0.2s"></div></div>
+        <div class="skill-bar"><div class="skill-fill" style="width:80%; animation-delay:0.1s"></div></div>
       </div>
       <div class="skill-item">
-        <div class="skill-header"><span class="skill-name">HTML / CSS</span><span class="skill-pct">65%</span></div>
-        <div class="skill-bar"><div class="skill-fill" style="width:65%; animation-delay:0.3s"></div></div>
+        <div class="skill-header"><span class="skill-name">Data Management & Encoding</span><span class="skill-pct">78%</span></div>
+        <div class="skill-bar"><div class="skill-fill" style="width:78%; animation-delay:0.2s"></div></div>
       </div>
       <div class="skill-item">
-        <div class="skill-header"><span class="skill-name">Data Management</span><span class="skill-pct">78%</span></div>
-        <div class="skill-bar"><div class="skill-fill" style="width:78%; animation-delay:0.4s"></div></div>
+        <div class="skill-header"><span class="skill-name">Java Programming</span><span class="skill-pct">75%</span></div>
+        <div class="skill-bar"><div class="skill-fill" style="width:75%; animation-delay:0.3s"></div></div>
       </div>
       <div class="skill-item">
-        <div class="skill-header"><span class="skill-name">SQLite / Database</span><span class="skill-pct">60%</span></div>
-        <div class="skill-bar"><div class="skill-fill" style="width:60%; animation-delay:0.5s"></div></div>
+        <div class="skill-header"><span class="skill-name">PHP / MySQL / SQLite</span><span class="skill-pct">68%</span></div>
+        <div class="skill-bar"><div class="skill-fill" style="width:68%; animation-delay:0.4s"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-header"><span class="skill-name">HTML / CSS / Bootstrap</span><span class="skill-pct">65%</span></div>
+        <div class="skill-bar"><div class="skill-fill" style="width:65%; animation-delay:0.5s"></div></div>
       </div>
     </div>
   </div>
@@ -377,7 +392,7 @@
       <div class="project-badge">★ Featured Project</div>
       <div class="project-title">ReFinder</div>
       <div class="project-subtitle">Recipe Finder System</div>
-      <p class="project-desc">A Java desktop application that helps reduce food waste by matching kitchen inventory against a recipe database using the Rabin-Karp string matching algorithm. Supports 61 curated recipes across Filipino, Chinese, and Korean cuisine.</p>
+      <p class="project-desc">A Java desktop application that helps reduce food waste by matching kitchen inventory against a curated multi-cuisine recipe database using the Rabin-Karp string matching algorithm across Filipino, Chinese, and Korean dishes.</p>
       <div class="tech-stack">
         <span class="tech-tag">Java 21</span>
         <span class="tech-tag">Swing + FlatLaf</span>
@@ -450,17 +465,46 @@
 <section id="experience">
   <div class="section-label">03 — Experience</div>
   <h2>Where I've Worked</h2>
-  <div class="exp-card fade-in">
-    <div class="exp-top">
-      <div>
-        <div class="exp-title">Data Encoder</div>
-        <div class="exp-org">LGU Panabo — CSWDO / Office of the Senior Citizen Affairs (OSCA)</div>
+  <div class="exp-list">
+
+    <!-- PEDIPO SPES -->
+    <div class="exp-card fade-in">
+      <div class="exp-top">
+        <div>
+          <div class="exp-title">Administrative & Event Support Assistant</div>
+          <div class="exp-org">LGU Panabo — Panabo City Economic Development and Investment Promotion Office (PEDIPO)</div>
+        </div>
+        <div class="exp-date">SPES · Jul 8 – Aug 10, 2026</div>
       </div>
-      <div class="exp-date">Internship / OJT</div>
+      <p class="exp-desc">
+        Designed, formatted, and operated PowerPoint presentations and visual materials for a week-long economic and investment promotion event, ensuring seamless technical flow during live sessions. Maintained daily workspace organization, document filing, and office logistics while assisting PEDIPO staff with day-to-day administrative tasks and on-site event coordination.
+      </p>
+      <ul class="exp-bullets">
+        <li>Prepared & operated multimedia PowerPoint decks for a week-long city event</li>
+        <li>Handled workspace organization, document filing & office upkeep</li>
+        <li>Supported staff with daily administrative workflows & event logistics</li>
+      </ul>
     </div>
-    <p class="exp-desc">
-      Entered, verified, and organized data of senior citizens and persons with disabilities (PWDs) for government records. Ensured accuracy, confidentiality, and completeness of information across official databases. Collaborated with office staff to support community services and administrative needs, gaining hands-on experience in data management, clerical tasks, and professional government workflows.
-    </p>
+
+    <!-- OSCA SPES -->
+    <div class="exp-card fade-in">
+      <div class="exp-top">
+        <div>
+          <div class="exp-title">Data Encoder</div>
+          <div class="exp-org">LGU Panabo — CSWDO / Office of the Senior Citizens Affairs (OSCA)</div>
+        </div>
+        <div class="exp-date">SPES · Jun 2024 – Jul 2024</div>
+      </div>
+      <p class="exp-desc">
+        Entered, verified, and organized data of senior citizens and persons with disabilities (PWDs) for government records. Ensured accuracy, confidentiality, and completeness of information across official databases. Collaborated with office staff to support community services and administrative needs, gaining hands-on experience in data management, clerical tasks, and professional government workflows.
+      </p>
+      <ul class="exp-bullets">
+        <li>Encoded & verified Senior Citizen and PWD records in official LGU databases</li>
+        <li>Maintained data accuracy, completeness & strict record confidentiality</li>
+        <li>Assisted constituents and staff with community welfare documentation</li>
+      </ul>
+    </div>
+
   </div>
 </section>
 
